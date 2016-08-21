@@ -1,0 +1,35 @@
+{
+  "name" : "Quick Presentation",
+  "identifier" : "com.sketchapp.quickpresentation",
+  "version" : "1.0",
+  "description" : "Create an artboard around selected artboards with a title above each.",
+  "authorEmail" : "timothy@timothywhalin.com",
+  "author" : "Tim Whalin",
+	"homepage": "https://github.com/timothywhalin/Sketch-Quick-Presentation",
+  "updateURL": "https://github.com/timothywhalin/Sketch-Quick-Presentation",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands" : [
+    {
+      "script" : "create-presentation.js",
+      "handler" : "createwithTitles",
+      "shortcut" : "",
+      "name" : "With Titles",
+      "identifier" : "withTitles"
+    },
+    {
+      "script" : "create-presentation.js",
+      "handler" : "createwithoutTitles",
+      "shortcut" : "",
+      "name" : "Without Titles",
+      "identifier" : "withoutTitles"
+    }
+  ],
+  "menu": {
+    "items": [
+      "withTitles",
+      "withoutTitles"
+    ],
+    "title" : "Quick Presentation"
+  }
+}
