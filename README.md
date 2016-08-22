@@ -27,7 +27,7 @@ To edit: Right-click 'Quick Presentation.sketchplugin' → Select 'Show Package 
 - **margin**: Sets the margin around your presentation. Default: 20
 - **artboardColor**: Sets the artboard background color. Default: #E6E6E6
 - **artboardTitle**: Sets the title for the new artboard presentation that will be created. Default: example
-- **titleAboveScreens**: Sets the default text for screen titles. Default: ScreenTitle
+- **titleAboveScreens**: Sets the default text for screen titles. If this is commented out, then it will use the artboard title as the text. Default: ScreenTitle
 - **fontType**: Font type for titles above artboards. Default: Helvetica
 - **fontColor**: Font color for titles above artboards. Default: #2F5060
 - **fontSize**: Base font size for titles. This will double when docSize set to 2. Default: 18
