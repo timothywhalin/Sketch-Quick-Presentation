@@ -1,6 +1,6 @@
 # Sketch-Quick-Presentation
 
-A simple plugin to quickly share multiple artboards with an optional title.
+A Sketch plugin to quickly share multiple artboards with an optional title.
 
 ## Download and installation
 
@@ -19,7 +19,7 @@ Plugins / Quick Presentation / With Titles
 
 ![Generate artboard with titles](README-Screenshots/with-titles.gif)
 
-## Config the plugin
+## Customize the plugin
 
 To edit: Right-click 'Quick Presentation.sketchplugin' → Select 'Show Package Contents' → Open config.js in a text editor.
 
