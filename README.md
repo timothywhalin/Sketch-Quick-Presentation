@@ -8,9 +8,15 @@ A simple plugin to quickly share multiple artboards with an optional title.
 2. Unzip the downloaded file and double click "Quick Presentation.sketchplugin". It will be automatically installed into Sketch.
 
 ## Create an artboard around selected artboards
+
+Plugins / Quick Presentation / Without Titles
+
 ![Generate artboard without titles](README-Screenshots/without-titles.gif)
 
 ## Create an artboard around selected artboards and add a title above each
+
+Plugins / Quick Presentation / With Titles
+
 ![Generate artboard with titles](README-Screenshots/with-titles.gif)
 
 ## Config the plugin
