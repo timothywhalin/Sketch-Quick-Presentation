@@ -31,15 +31,21 @@ function createwithTitles(context) {
   // Add Text layers
   for (var i = 0; i < selectedCount; i++) {
     var x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-    y = selection.objectAtIndex(i).frame().minY() - frame.minY() - (fontSize + (docSize*12)) ;
-    createText(context, x, y, artboard);
+    y = selection.objectAtIndex(i).frame().minY() - frame.minY() - (fontSize + (docSize*12));
+    if (typeof titleAboveScreens !== 'undefined') {
+      var artboardName = titleAboveScreens;
+    } else {
+      var artboardThis = selection.objectAtIndex(i)
+      var artboardName = [artboardThis name];
+    }
+    createText(context, x, y, artboard, artboardName);
   }
 };
 
-function createText(context, x, y, artboard){
+function createText(context, x, y, artboard, artboardName){
   var doc = context.document;
   var textLayer = MSTextLayer.new();
-  textLayer.setStringValue(titleAboveScreens);
+  textLayer.setStringValue(artboardName);
   textLayer.setFontSize(fontSize*docSize);
   textLayer.setFontPostscriptName(fontType);
   textLayer.setTextColor(MSColor.colorWithSVGString(fontColor))

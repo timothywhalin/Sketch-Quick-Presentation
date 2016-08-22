@@ -1,7 +1,7 @@
 {
   "name" : "Quick Presentation",
   "identifier" : "com.sketchapp.quickpresentation",
-  "version" : "1.0",
+  "version" : "1.0.1",
   "description" : "Create an artboard around selected artboards with a title above each.",
   "authorEmail" : "timothy@timothywhalin.com",
   "author" : "Tim Whalin",
