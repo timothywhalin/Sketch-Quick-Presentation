@@ -34,3 +34,6 @@ To edit: Right-click 'Quick Presentation.sketchplugin' → Select 'Show Package 
 
 ## Feature requests and feedback
 Ping me on [twitter](http://twitter.com/timothywhalin) or follow for updates.
+
+## Special thanks
+to [Jason Burns](https://github.com/sonburn/) for help on getting the artboard to the back.
