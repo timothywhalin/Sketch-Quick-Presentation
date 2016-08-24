@@ -31,12 +31,17 @@ function createwithTitles(context) {
   // Add Text layers
   for (var i = 0; i < selectedCount; i++) {
     var x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-    y = selection.objectAtIndex(i).frame().minY() - frame.minY() - (fontSize + (docSize*12));
+    y = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((fontSize*docSize) + 12);
     if (typeof titleAboveScreens !== 'undefined') {
       var artboardName = titleAboveScreens;
     } else {
       var artboardThis = selection.objectAtIndex(i)
       var artboardName = [artboardThis name];
+      var maxLength = selection.objectAtIndex(i).frame().width  () / (11.4*docSize);
+      if (artboardName.length() > maxLength){
+        artboardName = artboardName.substring(0,maxLength);
+        artboardName += '…';
+      }
     }
     createText(context, x, y, artboard, artboardName);
   }
