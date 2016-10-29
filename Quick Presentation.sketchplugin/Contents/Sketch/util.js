@@ -25,18 +25,18 @@ function createArtboard(context) {
     }
   }
 
-  var totalwidth=maxX-minX; // Last artboards X most point to the first artboard's minimum X most point
-  var totalheight=maxY-minY;
+  var totalwidth=maxX-minX, // Last artboards X most point to the first artboard's minimum X most point
+  totalheight=maxY-minY;
 
   artboard = MSArtboardGroup.new()
   frame = artboard.frame()
-  frame.setWidth(totalwidth + (margin*2))
-  frame.setHeight(totalheight + (margin*2))
-  frame.setX(minX-margin)
-  frame.setY(minY-margin)
-  artboard.setName(artboardTitle)
+  frame.setWidth(totalwidth + (userDefaults.margin*2))
+  frame.setHeight(totalheight + (userDefaults.margin*2))
+  frame.setX(minX-userDefaults.margin)
+  frame.setY(minY-userDefaults.margin)
+  artboard.setName(userDefaults.presentationTitle)
   artboard.setHasBackgroundColor(true);
-  artboard.backgroundColor=MSColor.colorWithSVGString(artboardColor)
+  artboard.backgroundColor=MSColor.colorWithSVGString(userDefaults.artboardColor)
   artboard.setConstrainProportions(false);
   var newArtboard = doc.currentPage().addLayers([artboard])
   [[artboard exportOptions] addExportFormat]

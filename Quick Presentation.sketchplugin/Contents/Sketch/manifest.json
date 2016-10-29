@@ -23,12 +23,21 @@
       "shortcut" : "",
       "name" : "Without Titles",
       "identifier" : "withoutTitles"
+    },
+    {
+      "script" : "config.js",
+      "handler" : "run",
+      "shortcut" : "",
+      "name" : "Settings",
+      "identifier" : "runSettings"
     }
   ],
   "menu": {
     "items": [
       "withTitles",
-      "withoutTitles"
+      "withoutTitles",
+      "-",
+      "runSettings"
     ],
     "title" : "Quick Presentation"
   }
