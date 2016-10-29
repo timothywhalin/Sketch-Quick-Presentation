@@ -25,21 +25,21 @@ function createArtboard(context) {
     }
   }
 
-  var totalwidth=maxX-minX; // Last artboards X most point to the first artboard's minimum X most point
-  var totalheight=maxY-minY;
+  var totalwidth = maxX-minX; // Last artboards X most point to the first artboard's minimum X most point
+  var totalheight = maxY-minY;
 
-  artboard = MSArtboardGroup.new()
-  frame = artboard.frame()
-  frame.setWidth(totalwidth + (margin*2))
-  frame.setHeight(totalheight + (margin*2))
-  frame.setX(minX-margin)
-  frame.setY(minY-margin)
-  artboard.setName(artboardTitle)
+  artboard = MSArtboardGroup.new();
+  frame = artboard.frame();
+  frame.setWidth( totalwidth + ( Config.margin * 2) );
+  frame.setHeight( totalheight + ( Config.margin * 2) );
+  frame.setX( minX - Config.margin );
+  frame.setY( minY - Config.margin );
+  artboard.setName( Config.artboardTitle );
   artboard.setHasBackgroundColor(true);
-  artboard.backgroundColor=MSColor.colorWithSVGString(artboardColor)
+  artboard.backgroundColor=MSColor.colorWithSVGString( Config.artboardColor );
   artboard.setConstrainProportions(false);
-  var newArtboard = doc.currentPage().addLayers([artboard])
-  [[artboard exportOptions] addExportFormat]
+  var newArtboard = doc.currentPage().addLayers([artboard]);
+  [[artboard exportOptions] addExportFormat];
 
   artboard.select_byExpandingSelection(true, false);
   actionWithType("MSMoveToBackAction",context).moveToBack(null);
