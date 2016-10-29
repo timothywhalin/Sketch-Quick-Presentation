@@ -23,12 +23,20 @@
       "shortcut" : "",
       "name" : "Without Titles",
       "identifier" : "withoutTitles"
+    },
+    {
+      "script" : "create-presentation.js",
+      "handler" : "createwithTitles",
+      "shortcut" : "",
+      "name" : "With Titles & Artboard Shadows",
+      "identifier" : "withTitlesAndShadows"
     }
   ],
   "menu": {
     "items": [
       "withTitles",
-      "withoutTitles"
+      "withoutTitles",
+      "withTitlesAndShadows",
     ],
     "title" : "Quick Presentation"
   }

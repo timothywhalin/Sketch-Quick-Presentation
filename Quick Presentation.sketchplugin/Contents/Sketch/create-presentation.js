@@ -30,8 +30,12 @@ function createwithTitles(context) {
 
   // Add Text layers
   for (var i = 0; i < selectedCount; i++) {
-    var x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-    y = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((fontSize*docSize) + 12);
+    var textX = selection.objectAtIndex(i).frame().minX() - frame.minX(),
+        textY = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((fontSize*docSize) + 12),
+        shadowX = selection.objectAtIndex(i).frame().minX() - frame.minX(),
+        shadowY = selection.objectAtIndex(i).frame().minY() - frame.minY(),
+        shadowW = selection.objectAtIndex(i).frame().width(),
+        shadowH = selection.objectAtIndex(i).frame().height();
     if (typeof titleAboveScreens !== 'undefined') {
       var artboardName = titleAboveScreens;
     } else {
@@ -43,7 +47,10 @@ function createwithTitles(context) {
         artboardName += '…';
       }
     }
-    createText(context, x, y, artboard, artboardName);
+    if(createShadows){
+      createShadow(context, shadowX, shadowY, shadowW, shadowH, artboard, artboardName);
+    }
+    createText(context, textX, textY, artboard, artboardName);
   }
 };
 
@@ -60,4 +67,28 @@ function createText(context, x, y, artboard, artboardName){
   textLayer.setTextBehaviour(0);
   textLayer.setName(artboardName + ' label');
   var newText = artboard.addLayers_([textLayer]);
+}
+
+function createShadow(context, x, y, w, h, artboard, artboardName){
+  var rect = MSRectangleShape.alloc().init();
+  rect.frame = MSRect.rectWithRect(NSMakeRect(x, y, w, h));
+  rect.setName(artboardName + ' bg');
+
+  // Draw rectangle behind artboard
+  var shapeGroup = MSShapeGroup.shapeWithPath(rect);
+
+  // Add white fill to rectangle
+  var white = MSColor.colorWithSVGString("#ffffff");
+  shapeGroup.style().addStylePartOfType(0);
+  shapeGroup.style().fills().firstObject().setColor(white);
+
+  // Add subtle shadow to rectangle
+  shapeGroup.style().addStylePartOfType(2);
+  var black = MSColor.colorWithSVGString("#000000");
+  black.alpha = 0.2;
+  shapeGroup.style().shadows().firstObject().setColor(black);
+  shapeGroup.style().shadows().firstObject().setOffsetY(1);
+  shapeGroup.style().shadows().firstObject().setBlurRadius(2);
+
+  artboard.addLayers([shapeGroup]);
 }
