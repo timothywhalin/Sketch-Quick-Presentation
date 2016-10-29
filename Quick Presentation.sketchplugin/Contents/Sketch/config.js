@@ -7,5 +7,5 @@ var Config = {
     fontType : 'Helvetica',             // Font type for titles above artboards.
     fontColor : '#2F5060',              // Font color for titles above artboards.
     fontSize : 18,                      // Base font size in pixels for titles. This will double when docSize set to 2.
-    createArtboardShadows : true,       // Draw a shape with shadow behind each artboard (true or false)
+    createArtboardShadows : false,       // Draw a shape with shadow behind each artboard (true or false)
 };
