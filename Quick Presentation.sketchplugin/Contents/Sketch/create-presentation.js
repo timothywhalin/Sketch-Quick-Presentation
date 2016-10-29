@@ -58,5 +58,6 @@ function createText(context, x, y, artboard, artboardName){
   textLayer.frame().setY(y);
   textLayer.setTextBehaviour(1);
   textLayer.setTextBehaviour(0);
+  textLayer.setName(artboardName + ' label');
   var newText = artboard.addLayers_([textLayer]);
 }
