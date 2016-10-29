@@ -31,6 +31,7 @@ To edit: Right-click 'Quick Presentation.sketchplugin' → Select 'Show Package 
 - **fontType**: Font type for titles above artboards. Default: Helvetica
 - **fontColor**: Font color for titles above artboards. Default: #2F5060
 - **fontSize**: Base font size for titles. This will double when docSize set to 2. Default: 18
+- **createArtboardShadows**: Draw a shape with shadow behind each artboard. Default: false
 
 ## Feature requests and feedback
 Ping me on [twitter](http://twitter.com/timothywhalin) or follow for updates.
