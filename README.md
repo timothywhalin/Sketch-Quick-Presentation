@@ -31,6 +31,12 @@ To edit: Plugins → Quick Presentation → Settings
 - **Screen Title Font**: Font type for titles above artboards. Default: Helvetica
 - **Screen Font Color**: Font color for titles above artboards. Default: #2F5060.  Only enter hex values.
 - **Screen Font Size**: Base font size for titles. This will double when docSize set to 2. Default: 18
+- **Add Shadow Behind Artboards**: Draw a shape with shadow behind each artboard (true or false)
+ - **Shadow Color (Hex value only)**: Sets shadow color, if shadow is turned on.
+ - **Shadow Opacity (0-1)**: Sets shadow opacity.
+ - **Shadow Offset X**: Sets shadow X offset.
+ - **Shadow Offset Y**: Sets shadow Y offset.
+ - **Shadow Blue Radius**: Sets shadow blur radius.
 
 ## Feature requests and feedback
 Ping me on [twitter](http://twitter.com/timothywhalin) or follow for updates.
