@@ -36,7 +36,7 @@ To edit: Plugins → Quick Presentation → Settings
  - **Shadow Opacity (0-1)**: Sets shadow opacity.
  - **Shadow Offset X**: Sets shadow X offset.
  - **Shadow Offset Y**: Sets shadow Y offset.
- - **Shadow Blue Radius**: Sets shadow blur radius.
+ - **Shadow Blur Radius**: Sets shadow blur radius.
 
 ## Feature requests and feedback
 Ping me on [twitter](http://twitter.com/timothywhalin) or follow for updates.
