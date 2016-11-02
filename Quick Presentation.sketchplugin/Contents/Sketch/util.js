@@ -39,7 +39,8 @@ function createArtboard(context, addTitles) {
   artboard.backgroundColor=MSColor.colorWithSVGString(userDefaults.artboardColor);
   artboard.setConstrainProportions(false);
   var newArtboard = doc.currentPage().addLayers([artboard]);
-  [[artboard exportOptions] addExportFormat]
+  var slice = [[artboard exportOptions] addExportFormat]
+  slice.setFileFormat(userDefaults.exportFormat)
 
   artboard.select_byExpandingSelection(true, false);
   actionWithType("MSMoveToBackAction",context).moveToBack(null);

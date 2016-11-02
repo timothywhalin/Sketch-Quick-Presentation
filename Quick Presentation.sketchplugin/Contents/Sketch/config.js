@@ -18,7 +18,8 @@ var presets = {
   shadowAlpha:0.2,              // Sets shadow opacity.
   shadowOffsetX:0,              // Sets shadow X offset.
   shadowOffsetY:1,              // Sets shadow Y offset.
-  shadowBlurRadius:2,            // Sets shadow blur radius.
+  shadowBlurRadius:2,           // Sets shadow blur radius.
+  exportFormat:'PDF'            // Set export format for presentation.
 }
 
 var pluginDomain = "com.sketchapp.quickpresentation"
@@ -74,8 +75,12 @@ var run = function() {
   [alert addTextLabelWithValue: 'Shadow Offset Y'] // 23
   [alert addTextFieldWithValue: userDefaults.shadowOffsetY] // 24
 
-  [alert addTextLabelWithValue: 'Shadow Blue Radius'] // 25
+  [alert addTextLabelWithValue: 'Shadow Blur Radius'] // 25
   [alert addTextFieldWithValue: userDefaults.shadowBlurRadius] // 26
+
+  [alert addTextLabelWithValue: 'Export Format'] // 27
+  var exportOptions = ['PNG', 'JPG', 'TIFF', 'PDF', 'EPS', 'SVG']
+  [alert addAccessoryView: createSelect(exportOptions, userDefaults.exportFormat)] //28
 
   var response = [alert runModal]
 
@@ -113,6 +118,8 @@ var run = function() {
 
     userDefaults.shadowBlurRadius = parseInt(valueAtIndex(alert, 26))
 
+    userDefaults.exportFormat = valueAtIndex(alert, 28)
+
     saveDefaults(userDefaults)
 
   } else if (response == "1002") {
@@ -143,4 +150,14 @@ var creatCheckbox = function(item, checked) {
 var checkedAtIndex = function(view, index) {
   var element = elementAtIndex(view, index);
   return [element state]
+}
+
+function createSelect(items, selectedItemIndex){
+
+  var comboBox = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))
+  comboBox.addItemsWithObjectValues(items)
+  var selectedIndex = items.indexOf(String(selectedItemIndex));
+  comboBox.selectItemAtIndex(selectedIndex)
+
+  return comboBox
 }
