@@ -70,8 +70,7 @@ function createArtboard(context, addTitles) {
       createTitle(context, x, y, artboard, artboardName);
     }
   }
-
-  if( userDefaults.createArtboardShadows ){
+  if(userDefaults.createArtboardShadows == true){
     for (var i = 0; i < selectedCount; i++) {
       var shadowX = selection.objectAtIndex(i).frame().minX() - frame.minX(),
           shadowY = selection.objectAtIndex(i).frame().minY() - frame.minY(),
