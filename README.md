@@ -37,6 +37,7 @@ To edit: Plugins → Quick Presentation → Settings
  - **Shadow Offset X**: Sets shadow X offset.
  - **Shadow Offset Y**: Sets shadow Y offset.
  - **Shadow Blur Radius**: Sets shadow blur radius.
+  - **Shadow Spread**: Sets shadow spread radius.
 - **Export Format**: Set export format for presentation.
 
 ## Feature requests and feedback
