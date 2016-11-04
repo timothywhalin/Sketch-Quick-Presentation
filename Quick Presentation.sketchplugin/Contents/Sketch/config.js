@@ -19,7 +19,8 @@ var presets = {
   shadowOffsetX:0,              // Sets shadow X offset.
   shadowOffsetY:1,              // Sets shadow Y offset.
   shadowBlurRadius:2,           // Sets shadow blur radius.
-  exportFormat:'png'            // Set export format for presentation.
+  exportFormat:'png',            // Set export format for presentation.
+  shadowSpread:0
 }
 
 var pluginDomain = "com.sketchapp.quickpresentation"
@@ -78,9 +79,12 @@ var run = function() {
   [alert addTextLabelWithValue: 'Shadow Blur Radius'] // 25
   [alert addTextFieldWithValue: userDefaults.shadowBlurRadius] // 26
 
-  [alert addTextLabelWithValue: 'Export Format'] // 27
+  [alert addTextLabelWithValue: 'Shadow Spread'] // 27
+[alert addTextFieldWithValue: userDefaults.shadowSpread] // 28
+
+  [alert addTextLabelWithValue: 'Export Format'] // 29
   var exportOptions = ['PNG', 'JPG', 'TIFF', 'PDF', 'EPS', 'SVG']
-  [alert addAccessoryView: createSelect(exportOptions, userDefaults.exportFormat.toUpperCase())] //28
+  [alert addAccessoryView: createSelect(exportOptions, userDefaults.exportFormat.toUpperCase())] //30
 
   var response = [alert runModal]
 
@@ -118,7 +122,9 @@ var run = function() {
 
     userDefaults.shadowBlurRadius = parseInt(valueAtIndex(alert, 26))
 
-    userDefaults.exportFormat = valueAtIndex(alert, 28).toLowerCase();
+    userDefaults.shadowSpread = parseInt(valueAtIndex(alert, 28))
+
+    userDefaults.exportFormat = valueAtIndex(alert, 30).toLowerCase();
 
     saveDefaults(userDefaults)
 

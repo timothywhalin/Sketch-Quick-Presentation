@@ -135,6 +135,7 @@ function createShadow(context, x, y, w, h, artboard, artboardName){
   shapeGroup.style().shadows().firstObject().setOffsetX(userDefaults.shadowOffsetX);
   shapeGroup.style().shadows().firstObject().setOffsetY(userDefaults.shadowOffsetY);
   shapeGroup.style().shadows().firstObject().setBlurRadius(userDefaults.shadowBlurRadius);
+  shapeGroup.style().shadows().firstObject().setSpread(userDefaults.shadowSpread);
 
   artboard.addLayers([shapeGroup]);
 }
