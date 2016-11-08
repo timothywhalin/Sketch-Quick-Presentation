@@ -36,7 +36,7 @@ function createArtboard(context, addTitles) {
   frame.setY(minY-userDefaults.margin);
   artboard.setName(userDefaults.presentationTitle);
   artboard.setHasBackgroundColor(true);
-  artboard.backgroundColor=MSColor.colorWithSVGString(userDefaults.artboardColor);
+  artboard.backgroundColor=MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.artboardColor));
   artboard.setConstrainProportions(false);
   var newArtboard = doc.currentPage().addLayers([artboard]);
   var slice = [[artboard exportOptions] addExportFormat]
@@ -92,7 +92,7 @@ function createTitle(context, x, y, artboard, artboardName){
   textLayer.setName(artboardName);
   textLayer.setFontSize(userDefaults.fontSize*userDefaults.docSize);
   textLayer.setFontPostscriptName(userDefaults.fontType);
-  textLayer.setTextColor(MSColor.colorWithSVGString(userDefaults.fontColor))
+  textLayer.setTextColor(MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.fontColor)))
   textLayer.frame().setX(x);
   textLayer.frame().setY(y);
   textLayer.setTextBehaviour(1);
@@ -123,19 +123,18 @@ function createShadow(context, x, y, w, h, artboard, artboardName){
   // TODO: make rectangle and shadow properties configurable too
 
   // Add white fill to rectangle
-  var white = MSColor.colorWithSVGString("#FFFFFF");
+  var white = MSColor.colorWithNSColor(NSColor.colorWithHex("#FFFFFF"));
   shapeGroup.style().addStylePartOfType(0);
   shapeGroup.style().fills().firstObject().setColor(white);
 
   // Add subtle shadow to rectangle
   shapeGroup.style().addStylePartOfType(2);
-  var black = MSColor.colorWithSVGString(userDefaults.shadowColor);
+  var black = MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.shadowColor));
   black.alpha = userDefaults.shadowAlpha;
   shapeGroup.style().shadows().firstObject().setColor(black);
   shapeGroup.style().shadows().firstObject().setOffsetX(userDefaults.shadowOffsetX);
   shapeGroup.style().shadows().firstObject().setOffsetY(userDefaults.shadowOffsetY);
   shapeGroup.style().shadows().firstObject().setBlurRadius(userDefaults.shadowBlurRadius);
-  shapeGroup.style().shadows().firstObject().setSpread(userDefaults.shadowSpread);
 
   artboard.addLayers([shapeGroup]);
 }
