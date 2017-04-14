@@ -43,7 +43,7 @@ function createArtboard(context, addTitles) {
   slice.setFileFormat(userDefaults.exportFormat)
 
   artboard.select_byExpandingSelection(true, false);
-  actionWithType("MSMoveToBackAction",context).moveToBack(null);
+  MSLayerMovement.moveToBack([artboard]);
 
   if(addTitles !== undefined){
     // Add extra height to artboard for text
