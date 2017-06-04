@@ -8,7 +8,7 @@
 	"homepage": "https://github.com/timothywhalin/Sketch-Quick-Presentation",
   "updateURL": "https://github.com/timothywhalin/Sketch-Quick-Presentation",
   "compatibleVersion": 43.1,
-  "appcast": "https://raw.githubusercontent.com/tmothywhalin/Sketch-Quick-Presentation/master/appcast.xml",
+  "appcast": "https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/appcast.xml",
   "bundleVersion": 1,
   "commands" : [
     {
