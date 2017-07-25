@@ -49,13 +49,11 @@ function createArtboard(context, addTitles) {
     // Add extra height to artboard for text
     var addToArtboard = (userDefaults.fontSize+3)*userDefaults.docSize; // Specifies extra space to add text
     frame.setWidth((frame.width()))
-    frame.setHeight(frame.height()+addToArtboard))
+    frame.setHeight((frame.height()+addToArtboard))
     frame.setY((frame.minY()-addToArtboard))
 
     // Add Text layers
     for (var i = 0; i < selectedCount; i++) {
-      var x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-      y = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((userDefaults.fontSize*userDefaults.docSize) + 12);
       if (userDefaults.titleAboveScreens != '') {
         var artboardName = userDefaults.titleAboveScreens;
       } else {
@@ -67,7 +65,19 @@ function createArtboard(context, addTitles) {
           artboardName += '…';
         }
       }
-      createTitle(context, x, y, artboard, artboardName);
+      var titleFontSize = userDefaults.fontSize * userDefaults.docSize,
+          descrFontSize = (userDefaults.fontSize / 2.25) * userDefaults.docSize; // 36/16 ratio
+          lineHeight =  titleFontSize * 1.25, // Sketch default line-height
+          offset = titleFontSize + descrFontSize + lineHeight,
+          x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
+          y = selection.objectAtIndex(i).frame().minY() - frame.minY() - offset;
+      if(userDefaults.createArtboardDescription == true){
+        createText(context, x, y, artboard, artboardName, titleFontSize);
+        createText(context, x, y + lineHeight, artboard, "Enter a description.", descrFontSize);
+      }
+      else {
+        createText(context, x, y, artboard, artboardName, titleFontSize);
+      }
     }
   }
   if(userDefaults.createArtboardShadows == true){
@@ -85,12 +95,12 @@ function createArtboard(context, addTitles) {
   return artboard;
 };
 
-function createTitle(context, x, y, artboard, artboardName){
+function createText(context, x, y, artboard, text, fontSize){
   var doc = context.document;
   var textLayer = MSTextLayer.new();
-  textLayer.setStringValue(artboardName);
-  textLayer.setName(artboardName);
-  textLayer.setFontSize(userDefaults.fontSize*userDefaults.docSize);
+  textLayer.setStringValue(text);
+  textLayer.setName(text);
+  textLayer.setFontSize(fontSize);
   textLayer.setFontPostscriptName(userDefaults.fontType);
   textLayer.setTextColor(MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.fontColor)))
   textLayer.frame().setX(x);

@@ -13,6 +13,7 @@ var presets = {
   fontType: 'Helvetica',        // Font type for titles above artboards.
   fontColor: '#2F5060',         // Font color for titles above artboards.
   fontSize: 18,                 // Base font size for titles. This will double when docSize set to 2.
+  createArtboardDescription: false,     // Add description text layer below the title
   createArtboardShadows: false,  // Draw a shape with shadow behind each artboard (true or false)
   shadowColor:'#000000',        // Sets shadow color, if shadow is turned on.
   shadowAlpha:0.2,              // Sets shadow opacity.
@@ -39,7 +40,8 @@ var run = function() {
   [alert setMessageText: 'Quick Presentation Settings']
 
   [alert addTextLabelWithValue: 'Are you designing at 1x, 2x, or 3x?'] // 0
-  [alert addTextFieldWithValue: userDefaults.docSize] // 1
+  var docSizes = ['1', '2', '3']
+  [alert addAccessoryView: createSelect(docSizes, userDefaults.docSize)] // 1
 
   [alert addTextLabelWithValue: 'Margin around presentation'] // 2
   [alert addTextFieldWithValue: userDefaults.margin] // 3
@@ -62,29 +64,31 @@ var run = function() {
   [alert addTextLabelWithValue: 'Screen Font Size'] // 14
   [alert addTextFieldWithValue: userDefaults.fontSize] // 15
 
-  [alert addAccessoryView: creatCheckbox({name: 'Add Shadow Behind Artboards', value: 'true'}, userDefaults.createArtboardShadows)] //16
+  [alert addAccessoryView: creatCheckbox({name: 'Add Text Description Layer Below Title', value: 'true'}, userDefaults.createArtboardDescription)] //16
 
-  [alert addTextLabelWithValue: 'Shadow Color (Hex value only)'] // 17
-  [alert addTextFieldWithValue: userDefaults.shadowColor] // 18
+  [alert addAccessoryView: creatCheckbox({name: 'Add Shadow Behind Artboards', value: 'true'}, userDefaults.createArtboardShadows)] //17
 
-  [alert addTextLabelWithValue: 'Shadow Opacity (0-1)'] // 19
-  [alert addTextFieldWithValue: userDefaults.shadowAlpha] // 20
+  [alert addTextLabelWithValue: 'Shadow Color (Hex value only)'] // 18
+  [alert addTextFieldWithValue: userDefaults.shadowColor] // 19
 
-  [alert addTextLabelWithValue: 'Shadow Offset X'] // 21
-  [alert addTextFieldWithValue: userDefaults.shadowOffsetX] // 22
+  [alert addTextLabelWithValue: 'Shadow Opacity (0-1)'] // 20
+  [alert addTextFieldWithValue: userDefaults.shadowAlpha] // 21
 
-  [alert addTextLabelWithValue: 'Shadow Offset Y'] // 23
-  [alert addTextFieldWithValue: userDefaults.shadowOffsetY] // 24
+  [alert addTextLabelWithValue: 'Shadow Offset X'] // 22
+  [alert addTextFieldWithValue: userDefaults.shadowOffsetX] // 23
 
-  [alert addTextLabelWithValue: 'Shadow Blur Radius'] // 25
-  [alert addTextFieldWithValue: userDefaults.shadowBlurRadius] // 26
+  [alert addTextLabelWithValue: 'Shadow Offset Y'] // 24
+  [alert addTextFieldWithValue: userDefaults.shadowOffsetY] // 25
 
-  [alert addTextLabelWithValue: 'Shadow Spread'] // 27
-  [alert addTextFieldWithValue: userDefaults.shadowSpread] // 28
+  [alert addTextLabelWithValue: 'Shadow Blur Radius'] // 26
+  [alert addTextFieldWithValue: userDefaults.shadowBlurRadius] // 27
 
-  [alert addTextLabelWithValue: 'Export Format'] // 29
+  [alert addTextLabelWithValue: 'Shadow Spread'] // 28
+  [alert addTextFieldWithValue: userDefaults.shadowSpread] // 29
+
+  [alert addTextLabelWithValue: 'Export Format'] // 30
   var exportOptions = ['PNG', 'JPG', 'TIFF', 'PDF', 'EPS', 'SVG']
-  [alert addAccessoryView: createSelect(exportOptions, userDefaults.exportFormat.toUpperCase())] //30
+  [alert addAccessoryView: createSelect(exportOptions, userDefaults.exportFormat.toUpperCase())] //31
 
   var response = [alert runModal]
 
@@ -107,24 +111,30 @@ var run = function() {
     userDefaults.fontSize = parseInt(valueAtIndex(alert, 15))
 
     if( checkedAtIndex(alert, 16) ) {
+      userDefaults.createArtboardDescription = true;
+    } else {
+      userDefaults.createArtboardDescription = false;
+    }
+
+    if( checkedAtIndex(alert, 17) ) {
       userDefaults.createArtboardShadows = true;
     } else {
       userDefaults.createArtboardShadows = false;
     }
 
-    userDefaults.shadowColor = valueAtIndex(alert, 18)
+    userDefaults.shadowColor = valueAtIndex(alert, 19)
 
-    userDefaults.shadowAlpha = parseFloat(valueAtIndex(alert, 20))
+    userDefaults.shadowAlpha = parseFloat(valueAtIndex(alert, 21))
 
-    userDefaults.shadowOffsetX = parseInt(valueAtIndex(alert, 22))
+    userDefaults.shadowOffsetX = parseInt(valueAtIndex(alert, 23))
 
-    userDefaults.shadowOffsetY = parseInt(valueAtIndex(alert, 24))
+    userDefaults.shadowOffsetY = parseInt(valueAtIndex(alert, 25))
 
-    userDefaults.shadowBlurRadius = parseInt(valueAtIndex(alert, 26))
+    userDefaults.shadowBlurRadius = parseInt(valueAtIndex(alert, 27))
 
-    userDefaults.shadowSpread = parseInt(valueAtIndex(alert, 28))
+    userDefaults.shadowSpread = parseInt(valueAtIndex(alert, 29))
 
-    userDefaults.exportFormat = valueAtIndex(alert, 30).toLowerCase();
+    userDefaults.exportFormat = valueAtIndex(alert, 31).toLowerCase();
 
     saveDefaults(userDefaults)
 
@@ -144,7 +154,7 @@ var valueAtIndex = function(view, index) {
 
 var creatCheckbox = function(item, checked) {
   checked = (checked == false)? NSOffState: NSOnState;
-  var checkbox = [[NSButton alloc] initWithFrame: NSMakeRect(0, 0, 300, 40)];
+  var checkbox = [[NSButton alloc] initWithFrame: NSMakeRect(0, 0, 300, 25)];
   [checkbox setButtonType: NSSwitchButton]
   [checkbox setBezelStyle: 0]
   [checkbox setTitle: item.name]
@@ -160,7 +170,7 @@ var checkedAtIndex = function(view, index) {
 
 function createSelect(items, selectedItemIndex){
 
-  var comboBox = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))
+  var comboBox = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,300,25))
   comboBox.addItemsWithObjectValues(items)
   var selectedIndex = items.indexOf(String(selectedItemIndex));
   comboBox.selectItemAtIndex(selectedIndex)
