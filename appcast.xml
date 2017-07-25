@@ -3,19 +3,19 @@
   <channel>
     <title>Quick Presentations</title>
     <link>https://raw.githubusercontent.com/tmothywhalin/Sketch-Quick-Presentation/master/appcast.xml</link>
-    <description>Create an artboard around selected artboards with a title above each.</description>
+    <description>Create an artboard around selected artboards with a title and an optional description above each.</description>
     <language>en</language>
     <item>
-      <title>Version 1.2</title>
+      <title>Version 1.3</title>
       <description>
         <![CDATA[
         <ul>
-          <li>Integration with auto-update</li>
+          <li>Added option to create a Text layer for description below the title.</li>
         </ul>
         ]]>
       </description>
-      <pubDate>Sun, 03 Jun 2017 12:30:00 +0000</pubDate>
-      <enclosure url="https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/releases/Quick-Presentation.sketchpluginv1.2.zip" sparkle:version="1.2" type="application/octet-stream" />
+      <pubDate>Tue, 25 Jul 2017 12:30:00 +0000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/releases/Quick-Presentation.sketchpluginv1.3.zip" sparkle:version="1.2" type="application/octet-stream" />
     </item>
   </channel>
 </rss>
