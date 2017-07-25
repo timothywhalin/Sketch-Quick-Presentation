@@ -13,6 +13,7 @@ var presets = {
   fontType: 'Helvetica',        // Font type for titles above artboards.
   fontColor: '#2F5060',         // Font color for titles above artboards.
   fontSize: 18,                 // Base font size for titles. This will double when docSize set to 2.
+  fontOffset: 12,               // Font offset from artboard
   createArtboardShadows: false,  // Draw a shape with shadow behind each artboard (true or false)
   shadowColor:'#000000',        // Sets shadow color, if shadow is turned on.
   shadowAlpha:0.2,              // Sets shadow opacity.
@@ -61,6 +62,9 @@ var run = function() {
 
   [alert addTextLabelWithValue: 'Screen Font Size'] // 14
   [alert addTextFieldWithValue: userDefaults.fontSize] // 15
+  
+  [alert addTextLabelWithValue: 'Screen Font Offset'] // 31
+  [alert addTextFieldWithValue: userDefaults.fontOffset] // 32
 
   [alert addAccessoryView: creatCheckbox({name: 'Add Shadow Behind Artboards', value: 'true'}, userDefaults.createArtboardShadows)] //16
 
@@ -105,6 +109,8 @@ var run = function() {
     userDefaults.fontColor = valueAtIndex(alert, 13)
 
     userDefaults.fontSize = parseInt(valueAtIndex(alert, 15))
+    
+    userDefaults.fontOffset = parseInt(valueAtIndex(alert, 32))
 
     if( checkedAtIndex(alert, 16) ) {
       userDefaults.createArtboardShadows = true;
