@@ -55,7 +55,7 @@ function createArtboard(context, addTitles) {
     // Add Text layers
     for (var i = 0; i < selectedCount; i++) {
       var x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-      y = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((userDefaults.fontSize*userDefaults.docSize) + 12);
+      y = selection.objectAtIndex(i).frame().minY() - frame.minY() - ((userDefaults.fontSize*userDefaults.docSize) + userDefaults.fontOffset);
       if (userDefaults.titleAboveScreens != '') {
         var artboardName = userDefaults.titleAboveScreens;
       } else {
