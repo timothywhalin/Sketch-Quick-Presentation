@@ -47,7 +47,7 @@ function createArtboard(context, addTitles) {
 
   if(addTitles !== undefined){
     // Add extra height to artboard for text
-    var addToArtboard = (userDefaults.fontSize+3)*userDefaults.docSize; // Specifies extra space to add text
+    var addToArtboard = (userDefaults.fontSize*1.25)*userDefaults.docSize; // Specifies extra space to add text
     frame.setWidth((frame.width()))
     frame.setHeight((frame.height()+addToArtboard))
     frame.setY((frame.minY()-addToArtboard))
@@ -59,21 +59,18 @@ function createArtboard(context, addTitles) {
       } else {
         var artboardThis = selection.objectAtIndex(i)
         var artboardName = [artboardThis name];
-        var maxLength = selection.objectAtIndex(i).frame().width  () / (11.4*userDefaults.docSize);
+        var maxLength = selection.objectAtIndex(i).frame().width() / (userDefaults.fontSize*0.6*userDefaults.docSize);
         if (artboardName.length() > maxLength){
           artboardName = artboardName.substring(0,maxLength);
           artboardName += '…';
         }
       }
       var titleFontSize = userDefaults.fontSize * userDefaults.docSize,
-          descrFontSize = (userDefaults.fontSize / 2.25) * userDefaults.docSize; // 36/16 ratio
-          lineHeight =  titleFontSize * 1.25, // Sketch default line-height
-          offset = titleFontSize + descrFontSize + lineHeight,
           x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-          y = selection.objectAtIndex(i).frame().minY() - frame.minY() - offset;
+          y = selection.objectAtIndex(i).frame().minY() - frame.minY() - (addToArtboard+10);
       if(userDefaults.createArtboardDescription == true){
         createText(context, x, y, artboard, artboardName, titleFontSize);
-        createText(context, x, y + lineHeight, artboard, "Enter a description.", descrFontSize);
+        createText(context, x, y + lineHeight, artboard, "Enter a description.");
       }
       else {
         createText(context, x, y, artboard, artboardName, titleFontSize);
