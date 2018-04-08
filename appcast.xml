@@ -3,8 +3,20 @@
   <channel>
     <title>Quick Presentations</title>
     <link>https://raw.githubusercontent.com/tmothywhalin/Sketch-Quick-Presentation/master/appcast.xml</link>
-    <description>Create an artboard around selected artboards with a title and an optional description above each.</description>
+    <description>Create an artboard around selected artboards with a title above each.</description>
     <language>en</language>
+    <item>
+      <title>Version 1.5</title>
+      <description>
+        <![CDATA[
+        <ul>
+          <li>Updated to use a slice instead of an artobard</li>
+        </ul>
+        ]]>
+      </description>
+      <pubDate>Sun, 8 Apr 2018 12:30:00 +0000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/releases/Quick-Presentation.sketchpluginv1.5.zip" sparkle:version="1.2" type="application/octet-stream" />
+    </item>
     <item>
       <title>Version 1.4</title>
       <description>
@@ -14,8 +26,20 @@
         </ul>
         ]]>
       </description>
-      <pubDate>Tue, 19 Sept 2017 8:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Sept 2017 8:00:00 +0000</pubDate>
       <enclosure url="https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/releases/Quick-Presentation.sketchpluginv1.4.zip" sparkle:version="1.2" type="application/octet-stream" />
+    </item>
+    <item>
+      <title>Version 1.2</title>
+      <description>
+        <![CDATA[
+        <ul>
+          <li>Integration with auto-update</li>
+        </ul>
+        ]]>
+      </description>
+      <pubDate>Sun, 19 Sept 2017 12:30:00 +0000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/timothywhalin/Sketch-Quick-Presentation/master/releases/Quick-Presentation.sketchpluginv1.2.zip" sparkle:version="1.2" type="application/octet-stream" />
     </item>
   </channel>
 </rss>
