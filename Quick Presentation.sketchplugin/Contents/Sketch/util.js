@@ -28,22 +28,28 @@ function createArtboard(context, addTitles) {
   var totalwidth = maxX-minX, // Last artboards X most point to the first artboard's minimum X most point
   totalheight = maxY-minY;
 
-  artboard = MSArtboardGroup.new();
-  frame = artboard.frame();
+  //Create Group
+  var group = MSLayerGroup.new();
+  group.setName('Quick Presentation');
+  var newGroup = doc.currentPage().addLayers([group]);
+  group.select_byExpandingSelection(true, false);
+  MSLayerMovement.moveToBack([group]);
+
+  //Create Slice
+  slice = MSSliceLayer.new();
+  frame = slice.frame();
   frame.setWidth(totalwidth + (userDefaults.margin*2));
   frame.setHeight(totalheight + (userDefaults.margin*2));
   frame.setX(minX-userDefaults.margin);
   frame.setY(minY-userDefaults.margin);
-  artboard.setName(userDefaults.presentationTitle);
-  artboard.setHasBackgroundColor(true);
-  artboard.backgroundColor=MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.artboardColor));
-  artboard.setConstrainProportions(false);
-  var newArtboard = doc.currentPage().addLayers([artboard]);
-  var slice = [[artboard exportOptions] addExportFormat]
-  slice.setFileFormat(userDefaults.exportFormat)
+  slice.setName(userDefaults.presentationTitle);
+  slice.setHasBackgroundColor(true);
+  slice.backgroundColor=MSColor.colorWithNSColor(NSColor.colorWithHex(userDefaults.artboardColor));
+  var newSlice = doc.currentPage().addLayers([slice]);
+  addSlice = [[slice exportOptions] addExportFormat]
+  addSlice.setFileFormat(userDefaults.exportFormat)
+  slice.moveToLayer_beforeLayer(group, nil); //Move slice to group
 
-  artboard.select_byExpandingSelection(true, false);
-  MSLayerMovement.moveToBack([artboard]);
 
   if(addTitles !== undefined){
     // Add extra height to artboard for text
@@ -66,33 +72,36 @@ function createArtboard(context, addTitles) {
         }
       }
       var titleFontSize = userDefaults.fontSize * userDefaults.docSize,
-          x = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-          y = selection.objectAtIndex(i).frame().minY() - frame.minY() - (addToArtboard+10);
+          x = selection.objectAtIndex(i).frame().minX(),
+          y = selection.objectAtIndex(i).frame().minY() - (addToArtboard+10);
       if(userDefaults.createArtboardDescription == true){
         createText(context, x, y, artboard, artboardName, titleFontSize);
         createText(context, x, y + lineHeight, artboard, "Enter a description.");
       }
       else {
-        createText(context, x, y, artboard, artboardName, titleFontSize);
+        createText(context, x, y, group, artboardName, titleFontSize);
       }
     }
   }
+
+  //Add Shadows
   if(userDefaults.createArtboardShadows == true){
     for (var i = 0; i < selectedCount; i++) {
-      var shadowX = selection.objectAtIndex(i).frame().minX() - frame.minX(),
-          shadowY = selection.objectAtIndex(i).frame().minY() - frame.minY(),
+      var shadowX = selection.objectAtIndex(i).frame().minX(),
+          shadowY = selection.objectAtIndex(i).frame().minY(),
           shadowW = selection.objectAtIndex(i).frame().width(),
           shadowH = selection.objectAtIndex(i).frame().height(),
           artboardThis = selection.objectAtIndex(i),
           artboardName = [artboardThis name];
-      createShadow(context, shadowX, shadowY, shadowW, shadowH, artboard, artboardName);
+      createShadow(context, shadowX, shadowY, shadowW, shadowH, group, artboardName);
     }
   }
 
-  return artboard;
+  slice.select_byExpandingSelection(true, false); // Selects slice at the end of the process
+  return slice;
 };
 
-function createText(context, x, y, artboard, text, fontSize){
+function createText(context, x, y, group, text, fontSize){
   var doc = context.document;
   var textLayer = MSTextLayer.new();
   textLayer.setStringValue(text);
@@ -104,7 +113,9 @@ function createText(context, x, y, artboard, text, fontSize){
   textLayer.frame().setY(y);
   textLayer.setTextBehaviour(1);
   textLayer.setTextBehaviour(0);
-  var newText = artboard.addLayers_([textLayer]);
+
+  doc.currentPage().addLayers([textLayer]);
+  textLayer.moveToLayer_beforeLayer(group, nil);
 }
 
 
@@ -119,7 +130,8 @@ function actionWithType(type,context) {
   }
 }
 
-function createShadow(context, x, y, w, h, artboard, artboardName){
+function createShadow(context, x, y, w, h, group, artboardName){
+  var doc = context.document;
   var rect = MSRectangleShape.alloc().init();
   rect.frame = MSRect.rectWithRect(NSMakeRect(x, y, w, h));
   rect.setName(artboardName + ' shadow');
@@ -144,5 +156,6 @@ function createShadow(context, x, y, w, h, artboard, artboardName){
   shapeGroup.style().shadows().firstObject().setBlurRadius(userDefaults.shadowBlurRadius);
   shapeGroup.style().shadows().firstObject().setSpread(userDefaults.shadowSpread);
 
-  artboard.addLayers([shapeGroup]);
+  doc.currentPage().addLayers([shapeGroup]);
+  shapeGroup.moveToLayer_beforeLayer(group, nil);
 }
